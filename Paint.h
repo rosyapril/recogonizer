@@ -32,6 +32,11 @@ private:
 	QVector<QPoint> stroke;
 	QVector<QVector<QPoint> > lines;
 
+	QVector<QPointF> resampledStroke;
+
+	unsigned int SAMPLESIZE;
+	int boundingBoxSize;
+
 	bool painting;
 	bool painted;
 
@@ -42,6 +47,9 @@ private:
 	void mouseMoveEvent(QMouseEvent *event);
 	void mouseReleaseEvent(QMouseEvent *event);
 	void paintEvent(QPaintEvent *event);
+
+	// function for oneDollar
+	void oneDollarCalculate();
 };
 
 #endif // PAINT_H
