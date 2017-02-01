@@ -35,7 +35,7 @@ private:
 	QVector<QPointF> resampledStroke;
 
 	unsigned int SAMPLESIZE;
-	int boundingBoxSize;
+	int BOUNDINGBOXSIZE;
 
 	bool painting;
 	bool painted;

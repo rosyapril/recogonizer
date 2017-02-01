@@ -12,7 +12,7 @@ Paint::Paint(QWidget *parent) : QWidget(parent), ui(new Ui::Paint) {
 	on_clearButton_clicked();
 
 	SAMPLESIZE = 50;
-	boundingBoxSize = 200;
+	BOUNDINGBOXSIZE = 200;
 }
 
 Paint::~Paint() {
@@ -55,8 +55,8 @@ void Paint::mouseReleaseEvent(QMouseEvent *event) {
 
 		painted = true;
 
-//		lines.push_back(stroke);
-//		stroke.clear();
+		//		lines.push_back(stroke);
+		//		stroke.clear();
 	}
 
 	// do oneDollarCalculate after mouse release;
@@ -73,15 +73,15 @@ void Paint::paintEvent(QPaintEvent *event) {
 	painter.setPen(QPen(Qt::black, 3));
 
 	// paint the lines first
-//	for (size_t i = 0; i < lines.size() ; ++i){
-//		for (size_t j = 0; j < lines[i].size() ; ++j){
-//			painter.drawPoint(lines[i][j].x() , lines[i][j].y() );
-//		}
-//	}
+	//	for (size_t i = 0; i < lines.size() ; ++i){
+	//		for (size_t j = 0; j < lines[i].size() ; ++j){
+	//			painter.drawPoint(lines[i][j].x() , lines[i][j].y() );
+	//		}
+	//	}
 
 	// then paint the stroke;
 	for (size_t i = 0; i < stroke.size() ; ++i) painter.drawPoint(stroke[i]);
-
+	/*
 	QPainter painter2(this);
 	painter2.setPen(QPen(Qt::red , 5));
 	for (size_t i = 0 ; i < resampledStroke.size() ; ++i){
@@ -89,7 +89,7 @@ void Paint::paintEvent(QPaintEvent *event) {
 //		qDebug() << resampledStroke[i].x() << " <-x y-> " << resampledStroke[i].y();
 	}
 //	qDebug() << "Size of new stroke -> " <<resampledStroke.size();
-
+*/
 }
 
 void Paint::oneDollarCalculate() {
@@ -168,8 +168,8 @@ void Paint::oneDollarCalculate() {
 
 	// 3.1 find the smallest and largest x, y; scale it to 100*100;
 	// move every point by the samllest(x, y), and x scale is xlargest / 100, y scale is ylargest/100;
-	double xRatio = (largestX - smallestX) / boundingBoxSize;
-	double yRatio = (largestY - smallestY) / boundingBoxSize;
+	double xRatio = (largestX - smallestX) / BOUNDINGBOXSIZE;
+	double yRatio = (largestY - smallestY) / BOUNDINGBOXSIZE;
 	for (size_t i = 0 ; i < SAMPLESIZE ; ++i) {
 		// move
 		resampledStroke[i].setX( (resampledStroke[i].x() - smallestX) / xRatio);
